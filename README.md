@@ -1,5 +1,5 @@
 # OculorumMusica
-###Introduction
+### Introduction
 
 Oculorum Musica is an interactive music visualizer that allows you to experience 3D music visualizations, and also create your own! Explore a spaceship (because why not?) while listening to some great music, and watch everything around you come to life. The best part - you can draw using your controllers, and your drawings will come to life too!
 Jump on boomboxes(draw while jumping), Go Crazy, don't just draw your name.
