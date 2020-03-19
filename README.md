@@ -8,7 +8,7 @@ And also record your awesome creations and send it to us.
 
 ### Installation
 
-Download the apk named OculorumMusica.apk and move it to your Quest device.
+Find the apk named OculorumMusica.apk in the buildAPKs directory and sideload it to your Quest device.
 In Library -> Unknown sources, select _com.FUI291A.OculorumMusica_ to play.
 
 ### Usage
