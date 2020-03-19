@@ -81,6 +81,7 @@ namespace DilmerGames
             goLineRenderer.endWidth = lineDefaultWidth;
             goLineRenderer.useWorldSpace = true;
 
+			//Select a new random color every time a new line rendered is created.
             System.Random rnd = new System.Random();
             int col  = rnd.Next(1,randomColors.Length + 1);
 
@@ -98,9 +99,9 @@ namespace DilmerGames
             lines.Add(goLineRenderer);
         }
 
+		//Function to delete all stored line Renderers.
         void DeleteAllLines(){
-            //Debug.Log("Clear Lines");
-
+			
             while(lines.Count > 0){
         	   Destroy(lines[lines.Count-1]);
                lines.RemoveAt(lines.Count-1);
@@ -109,17 +110,19 @@ namespace DilmerGames
             AddNewLineRenderer();
         }
 
+		//Function to update 'y' positions in each of the LineRenderers
         void LineDance(){
-
+			
+			//Store Previous Spectrum data samples so that they can be reused to adjust the 'y' position back to it's original position, before updating with the new Spectrum data.
             float[] prevsamples = new float[64];
             Array.Copy(this.samples, prevsamples, 64);
+			
             aSource.GetSpectrumData(this.samples, 0, FFTWindow.BlackmanHarris);
             //For each sample  
             float prevpos;
             for(int l=0;l<lines.Count;l++){
                 for (int i = 0; i < lines[l].positionCount; i++)
-                {
-    
+                {    
                     Vector3 position = lines[l].GetPosition(i);
                     
                     if(!firstEntry)
@@ -127,8 +130,6 @@ namespace DilmerGames
                     else
                         prevpos = position[1];
                     lines[l].SetPosition(i,new Vector3(position[0], prevpos + (Mathf.Clamp(samples[(i+5)%64]*50, 0, 50))*0.1f ,position[2]));
-                    //lines[l].SetPosition(i, cubePos -goTransform.position);
-                   // this.transform.localScale =  new Vector3(this.transform.localScale.x, (Mathf.Clamp(samples[16]*50, 0, 50))*0.5f,this.transform.localScale.z);
                 }
             }
 
